@@ -37,3 +37,244 @@
 //      to your custom event.
 
 //TODO: Method to change the current player (and dispatch the according event).
+
+
+
+export const ConnectFourModelObject = {
+    players : ["Phineas", "Doofenschmirtz"],
+    whosTurn: "Phineas",
+    gameOver: false,
+    stoneslayed:[],
+    winningStones: 0,
+    battlefield: [
+        ["", "", "", "", "", ""],
+        ["", "", "", "", "", ""],
+        ["", "", "", "", "", ""],
+        ["", "", "", "", "", ""],
+        ["", "", "", "", "", ""],
+        ["", "", "", "", "", ""],
+        ["", "", "", "", "", ""],
+    ],
+    insertStone: function(columnToInsert)
+    {
+        if(ConnectFourModelObject.battlefield[columnToInsert-1][0] != "") return;
+
+        for (let i = 5; i >= 0; i--) {
+
+            if (ConnectFourModelObject.battlefield[columnToInsert-1][i] == "")
+            {
+                if(ConnectFourModelObject.whosTurn == "Phineas")
+                {
+                    ConnectFourModelObject.battlefield[columnToInsert-1][i] = "x";
+                }
+                else
+                {
+                    ConnectFourModelObject.battlefield[columnToInsert-1][i] = "o";
+                }
+
+                document.dispatchEvent(new CustomEvent("stone:inserted", {
+                    detail: {
+                        currentPlayer: ConnectFourModelObject.whosTurn,
+                        column: columnToInsert,
+                        row: i
+                    }
+                }));
+
+                return;
+            }
+        }
+    },
+        isGameOver: function()
+        {
+            let result = checkWinner();
+
+            if(result == "win")
+            {
+                this.winningStones = 1;
+
+                document.dispatchEvent(new CustomEvent("game:over", {
+                    detail: {
+                        winner: this.whosTurn,
+                        type: "win"
+                    }
+                }));
+                return true
+            }
+            else if(result == "draw")
+            {
+                document.dispatchEvent(new CustomEvent("game:over", {
+                    detail: {
+                        type: "draw"
+                    }
+                }));
+                return true
+            }
+            else{
+                return false;
+            }
+        },
+    changePlayer: function()
+    {
+        this.whosTurn =
+            ConnectFourModelObject.players.filter(
+                x => x != this.whosTurn
+            )[0];
+
+        document.dispatchEvent(new CustomEvent("player:changed", {
+            detail: {
+                currentPlayer: this.whosTurn
+            }
+        }));
+    }
+
+
+}
+document.addEventListener("stone:inserted", e => {
+    console.log(e.detail.currentPlayer + " added a stone");
+});
+document.addEventListener("player:changed", e => {
+    console.log("Current player:", e.detail.currentPlayer);
+});
+document.addEventListener("game:over", e => {
+
+    if(e.detail.type == "win")
+    {
+        openDialog(ConnectFourModelObject.whosTurn + " Won")
+
+        if(ConnectFourModelObject.whosTurn == "Phineas")
+        {
+            let img = document.getElementById("phin")
+            img.style.width = "400px";
+            img.style.height = "auto";
+        }
+        else
+        {
+            let img = document.getElementById("doof");
+            img.style.width = "400px";
+            img.style.height = "auto";
+        }
+    }
+    else
+    {
+        openDialog("Draw")
+    }
+
+});
+
+function openDialog(text)
+{
+    document.getElementById("dialogText").innerText = text
+    let dialog = document.getElementById("dialog")
+    dialog.classList.remove("hidden");
+    let btn = document.getElementById("dialogbtn")
+    btn.addEventListener("click", e => {
+        document.getElementById("dialog").classList.add("hidden");
+        location.reload();
+    })
+}
+function checkWinner() {
+
+    let emptyCounter = 0;
+
+    for (let col = 0; col < 7; col++) {
+
+        let currentPlayer = "";
+        let counter = 0;
+
+        for (let row = 0; row < 6; row++) {
+
+            let value = ConnectFourModelObject.battlefield[col][row];
+
+            if (value == "") {
+                emptyCounter++;
+            }
+
+            if (value != "" && value == currentPlayer) {
+                counter++;
+            }
+            else {
+                currentPlayer = value;
+
+                if (value != "") {
+                    counter = 1;
+                }
+                else {
+                    counter = 0;
+                }
+            }
+            if (counter == 4) {
+                return "win";
+            }
+        }
+    }
+
+
+    for (let row = 0; row < 6; row++) {
+
+        let currentPlayer = "";
+        let counter = 0;
+
+        for (let col = 0; col < 7; col++) {
+
+            let value = ConnectFourModelObject.battlefield[col][row];
+
+            if (value != "" && value == currentPlayer) {
+                counter++;
+            }
+            else {
+                currentPlayer = value;
+
+                if (value != "") {
+                    counter = 1;
+                }
+                else {
+                    counter = 0;
+                }
+            }
+            console.log(counter)
+            if (counter == 4) {
+                return "win";
+            }
+        }
+    }
+
+
+    for (let col = 0; col < 4; col++) {
+        for (let row = 0; row < 3; row++) {
+
+            let value = ConnectFourModelObject.battlefield[col][row];
+
+            if (
+                value != "" &&
+                value == ConnectFourModelObject.battlefield[col + 1][row + 1] &&
+                value == ConnectFourModelObject.battlefield[col + 2][row + 2] &&
+                value == ConnectFourModelObject.battlefield[col + 3][row + 3]
+            ) {
+                return "win";
+            }
+        }
+    }
+
+
+    for (let col = 0; col < 4; col++) {
+        for (let row = 3; row < 6; row++) {
+
+            let value = ConnectFourModelObject.battlefield[col][row];
+
+            if (
+                value != "" &&
+                value == ConnectFourModelObject.battlefield[col + 1][row - 1] &&
+                value == ConnectFourModelObject.battlefield[col + 2][row - 2] &&
+                value == ConnectFourModelObject.battlefield[col + 3][row - 3]
+            ) {
+                return "win";
+            }
+        }
+    }
+
+    if (emptyCounter == 0) {
+        return "draw";
+    }
+
+    return false;
+}
