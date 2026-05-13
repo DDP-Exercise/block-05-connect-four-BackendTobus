@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2903ab72-73a6-4939-897a-588a4d316cab" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/Doofenschmirtz.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/arrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/blauerkreis.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/orangerkreis.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/phineas.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controller.connectfour.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controller.connectfour.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/model.connectfour.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/model.connectfour.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/view.polished.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/view.polished.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +70,8 @@
       <workItem from="1778488831467" duration="262000" />
       <workItem from="1778499193045" duration="62000" />
       <workItem from="1778505300066" duration="5078000" />
-      <workItem from="1778591435816" duration="13739000" />
+      <workItem from="1778591435816" duration="13778000" />
+      <workItem from="1778669016097" duration="350000" />
     </task>
     <servers />
   </component>

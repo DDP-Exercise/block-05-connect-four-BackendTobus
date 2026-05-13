@@ -21,6 +21,8 @@ export const connectFourView = {
         this.phinimg = document.getElementById("phin");
         this.doofimg = document.getElementById("doof");
         this.hideWrongPlayer(whosTurn);
+        this.lbl = document.getElementById("whosTurn");
+        this.lbl.textContent = whosTurn +" ist dran";
     },
     insertStoneAt(id, whosTurn) {
 
@@ -47,6 +49,9 @@ export const connectFourView = {
     switchPlayer(currentPlayer)
     {
         this.hideWrongPlayer(currentPlayer)
+        this.lbl = document.getElementById("whosTurn");
+        this.lbl.textContent = currentPlayer+ " ist dran";
+
     },
     hideWrongPlayer: function (whosTurn)
     {
