@@ -1,5 +1,6 @@
 "use strict";
 
+
 /*******************************************************
  *     Connect Four - 100p
  *
@@ -45,3 +46,28 @@
 //      the view (or views, if you decide to make a console-view).
 
 //TODO: Add EventListeners, to forward the user inputs to the model.
+
+import {connectFourView} from "./view.polished.js";
+import {ConnectFourModelObject} from "./model.connectfour.js";
+
+
+const connectFourController = {
+    oninit: function(){
+        connectFourView.initFunc(ConnectFourModelObject.whosTurn);
+        connectFourView.insertButton.addEventListener("click", evt =>  {
+            ConnectFourModelObject.insertStone(evt.target.id.slice(3,4))
+            if(connectFourView.insertStoneAt(evt.target.id, ConnectFourModelObject.whosTurn)) {
+                if(!ConnectFourModelObject.isGameOver())
+                {
+                this.switchPlayer()}}
+
+        })
+    },
+    switchPlayer :function (){
+        ConnectFourModelObject.changePlayer()
+        connectFourView.switchPlayer(ConnectFourModelObject.whosTurn);
+    },
+
+
+}
+connectFourController.oninit();

@@ -5,7 +5,84 @@
     <title>Connect Four</title>
 </head>
 <body>
-    <!--TODO: Build the Markup for your Game. Don't forget to style it in a cascading stylesheet. -->
+<link rel="stylesheet" href="Styles.css">
+    <h1>4 Gewinnt</h1>
+<div class="game-container">
+
+
+    <img src="images/phineas.webp" id="phin" class="side-character left-character" alt="Phineas">
+
+    <div class="game-area">
+<div class="top-row">
+    <img src="images/arrow.png" id ="row1" alt="">
+    <img src="images/arrow.png" id ="row2" alt="">
+    <img src="images/arrow.png" id ="row3" alt="">
+    <img src="images/arrow.png" id ="row4" alt="">
+    <img src="images/arrow.png" id ="row5" alt="">
+    <img src="images/arrow.png" id ="row6" alt="">
+    <img src="images/arrow.png" id ="row7" alt="">
+</div>
+<div class="board">
+    <div class="cell row1" ></div>
+    <div class="cell row2"></div>
+    <div class="cell row3"></div>
+    <div class="cell row4"></div>
+    <div class="cell row5"></div>
+    <div class="cell row6"></div>
+    <div class="cell row7"></div>
+
+    <div class="cell row1"></div>
+    <div class="cell row2"></div>
+    <div class="cell row3"></div>
+    <div class="cell row4"></div>
+    <div class="cell row5"></div>
+    <div class="cell row6"></div>
+    <div class="cell row7"></div>
+
+    <div class="cell row1"></div>
+    <div class="cell row2"></div>
+    <div class="cell row3"></div>
+    <div class="cell row4"></div>
+    <div class="cell row5"></div>
+    <div class="cell row6"></div>
+    <div class="cell row7"></div>
+
+    <div class="cell row1"></div>
+    <div class="cell row2"></div>
+    <div class="cell row3"></div>
+    <div class="cell row4"></div>
+    <div class="cell row5"></div>
+    <div class="cell row6"></div>
+    <div class="cell row7"></div>
+
+    <div class="cell row1"></div>
+    <div class="cell row2"></div>
+    <div class="cell row3"></div>
+    <div class="cell row4"></div>
+    <div class="cell row5"></div>
+    <div class="cell row6"></div>
+    <div class="cell row7"></div>
+
+    <div class="cell row1"></div>
+    <div class="cell row2"></div>
+    <div class="cell row3"></div>
+    <div class="cell row4"></div>
+    <div class="cell row5"></div>
+    <div class="cell row6"></div>
+    <div class="cell row7"></div>
+</div>
+    </div>
+    <img src="images/Doofenschmirtz.webp" id="doof" class="side-character right-character" alt="Doofenschmirtz">
+</div>
+<div id="dialog" class="hidden">
+    <div class="box">
+        <p id="dialogText"></p>
+        <button id="dialogbtn">OK</button>
+    </div>
+</div>
+<script type="module" src="js/controller.connectfour.js"></script>
+<script type="module" src="js/view.polished.js"></script>
+<script type="module" src="js/model.connectfour.js"></script>
 
 </body>
 </html>
